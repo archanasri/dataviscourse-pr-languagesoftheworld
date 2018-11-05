@@ -144,6 +144,8 @@ class Node{
                 .attr("transform", function(d) {
                   return "translate(" + d.y + "," + d.x + ")";
                 });
+
+
     node.append("circle")
         .attr("r", 10);
 
