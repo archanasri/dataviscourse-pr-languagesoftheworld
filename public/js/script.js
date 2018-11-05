@@ -19,7 +19,7 @@ loadData().then(data => {
         if(e.target.tagName !="path"){
           if(e.target.tagName !="circle"){
             if(e.target.className != "slider"){
-             updateCountry(null, null);
+             //updateCountry(null, null);
 }
         }
 
