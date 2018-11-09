@@ -46,8 +46,8 @@ class bubbleChart {
     myObject[0] = "children"
     myObject["children"] = newArray;
 
-    let diameter = 500;
-
+    let diameter = 600;
+    let color = d3.scaleOrdinal(d3.schemeCategory10)
     let bubble = d3.pack(myObject)
                    .size([diameter, diameter])
                    .padding(1.5);
@@ -78,6 +78,10 @@ class bubbleChart {
     node.append("circle")
         .attr("r", function(d) {
           return d.r;
+        })
+        .attr("fill", function(d, i) {
+          console.log(d)
+          return color(d.value);
         });
     
     node.append("text")
