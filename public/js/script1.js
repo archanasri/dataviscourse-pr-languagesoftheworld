@@ -3,11 +3,11 @@ loadData().then(data => {
     let that = this;
 
     const bubbleMap = new bubbleChart(data);
-    //const worldMap = new Map(data);
+    const worldMap = new Map(data);
     //const nodeGraph = new Node(data);
 
     d3.json('data/world.json').then(mapData => {
-		//worldMap.drawMap(mapData);
+		worldMap.drawMap(mapData);
         //nodeGraph.drawNodeGraph(mapData);
         bubbleMap.createBubble(mapData);
     });
