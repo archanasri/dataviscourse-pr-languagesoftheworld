@@ -51,9 +51,10 @@ class bubbleChart {
     let bubble = d3.pack(myObject)
                    .size([diameter, diameter])
                    .padding(1.5);
-                
+
     let svg = d3.select("#bubble-chart")
                 .append("svg")
+                .classed("left_float",true)
                 .attr("width", diameter)
                 .attr("height", diameter)
                 .attr("class", "bubble");
@@ -62,7 +63,7 @@ class bubbleChart {
                   .sum(function(d) {
                     return d.value;
                   })
-    
+
     let node = svg.selectAll(".node")
                   .data(bubble(nodes).descendants())
                   .enter()
@@ -74,7 +75,7 @@ class bubbleChart {
                   .attr("transform", function(d) {
                     return "translate(" + d.x + "," + d.y + ")";
                   });
-          
+
     node.append("circle")
         .attr("r", function(d) {
           return d.r;
@@ -83,7 +84,7 @@ class bubbleChart {
           console.log(d)
           return color(d.value);
         });
-    
+
     node.append("text")
         .attr("dy", ".2em")
         .style("text-anchor", "middle")
