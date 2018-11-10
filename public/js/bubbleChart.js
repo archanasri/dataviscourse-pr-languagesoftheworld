@@ -46,6 +46,8 @@ class bubbleChart {
     myObject[0] = "children"
     myObject["children"] = newArray;
 
+    console.log(myObject)
+
     let diameter = 600;
     let color = d3.scaleOrdinal(d3.schemeCategory10)
     let bubble = d3.pack(myObject)
@@ -81,7 +83,7 @@ class bubbleChart {
           return d.r;
         })
         .attr("fill", function(d, i) {
-          console.log(d)
+          //console.log(d)
           return color(d.value);
         });
 
