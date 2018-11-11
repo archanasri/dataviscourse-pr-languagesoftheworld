@@ -135,7 +135,8 @@ class Node{
                      + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
                      + " " + d.parent.y + "," + d.parent.x;
                    })
-                .attr("stroke","black");
+                .attr("stroke","black")
+                .attr("fill","white");
 
     let node = g.selectAll(".node")
                 .data(nodes.descendants())
