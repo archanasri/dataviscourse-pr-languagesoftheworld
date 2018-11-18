@@ -21,8 +21,9 @@ class SystemData {
 
 class Node{
 
-    constructor(data){
+    constructor(data,worldMap){
     this.data = data;
+    this.worldMap = worldMap;
     }
 
     drawNodeGraph(){
@@ -67,7 +68,7 @@ class Node{
         }
 
       });
-
+      this.worldMap.update(myArray[0]);
       console.log(myArray);
       console.log(systemArray);
 
@@ -148,8 +149,33 @@ class Node{
 
 
     node.append("circle")
-        .attr("r", 10);
+        .attr("r", 10)
+        .on("click",function(d){
+        let current_key = d.data.parent;
+        let node_value = d.id;
 
+        let recordsSorted = []
+        recordsSorted.push(myArray.filter(function(o) {
+                return o.key === current_key;
+            }));
+        recordsSorted = recordsSorted[0];
+        let recordLength = recordsSorted.length;
+        let index = 0;
+        for(let i=0;i<recordLength;i++){
+          let data = recordsSorted[i].values[0];
+          if (data.numberOfGenders == node_value){
+            index = i;
+          }
+
+        }
+        let node_data = recordsSorted[index];
+        that.worldMap.update(node_data);
+
+
+
+
+        });
+    let that = this;
     node.append("text")
         .attr("dy", ".35em")
         .attr("x", function(d) {
@@ -157,7 +183,12 @@ class Node{
             })
         .style("text-anchor", function(d) {
               return d.children ? "end" : "start"; })
-        .text(function(d) { return d.data.GenderSystem; })
+        .text(function(d) { return d.data.GenderSystem; });
+
+
+
+
+
 
     }
 

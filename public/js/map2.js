@@ -58,7 +58,7 @@ class Map {
            .data(geojson.features);
           world_map_paths.enter()
            .append("path")
-           .attr("fill","grey")
+           .attr("fill","lightgrey")
            .attr("stroke","black")
            .attr("d",p);
 
@@ -80,6 +80,35 @@ class Map {
 
 
 
+
+
+    }
+
+    update(node_data){
+      console.log(node_data);
+      let world_map = d3.select("#map").select("svg")
+      let svg = world_map;
+      let that = this;
+      let circles = svg.selectAll("circle")
+        .data(node_data.values);
+
+      circles.exit().remove();
+      circles = circles.enter().append("circle")
+        .attr("r", 5)
+        .attr("transform", function(d) {
+
+          return "translate(" + that.projection([
+            d.longitude,
+            d.latitude
+            ]) + ")";
+          })
+        .attr("class",function(d){
+          let system = d.system;
+          system = system.split(" ");
+          console.log(system[1]);
+          return system[1];
+
+        })
 
 
     }

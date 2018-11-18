@@ -9,5 +9,17 @@
   }
 
 .left_float {
-    float:right;
+    float:left;
   }
+
+.Non-sex-based{
+  fill:blue;
+}
+
+.Sex-based{
+  fill:red;
+}
+
+.No{
+  fill:yellow;
+}

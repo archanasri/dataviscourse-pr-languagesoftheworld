@@ -5,7 +5,7 @@ loadData().then(data => {
 
 
     const worldMap = new Map(data);
-    const nodeGraph = new Node(data);
+    const nodeGraph = new Node(data,worldMap);
 
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);
