@@ -85,7 +85,7 @@ class Map {
     }
 
     update(node_data){
-      console.log(node_data);
+      //console.log(node_data);
       let world_map = d3.select("#map").select("svg")
       let svg = world_map;
       let that = this;
