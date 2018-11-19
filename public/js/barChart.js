@@ -2,20 +2,6 @@ class barChart {
 
   constructor(data) {
     this.data = data;
-    //this.wordldMap = wordldMap;
-
-    /*this.margin = {top: 10, right: 20, bottom: 20, left: 50};
-    let bChart = d3.select("#bubble-chart").classed("fullview", true);
-
-    //fetch the svg bounds
-    this.svgBounds = bChart.node().getBoundingClientRect();
-    this.svgWidth = this.svgBounds.width - this.margin.left - this.margin.right;
-    this.svgHeight = 150;
-
-    //add the svg to the div
-    this.svg = bChart.append("svg")
-            .attr("width", this.svgWidth)
-            .attr("height", this.svgHeight);*/
   }
 
   update(familyData, countryCode, color, val) {

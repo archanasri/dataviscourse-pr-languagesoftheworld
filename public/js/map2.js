@@ -9,7 +9,7 @@ class Map {
      * country was updated (clicked)
      */
     constructor(data) {
-        // ******* TODO: PART I *******
+
         this.projection = d3.geoWinkel3().scale(140).translate([365, 225]);
         this.nameArray = data.language.map(d => d.wals_code.toUpperCase());
         this.languageData = data.language;

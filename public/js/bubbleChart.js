@@ -16,6 +16,8 @@ class bubbleChart {
                 .key(function(d) {return d.family})
                 .entries(this.data.language);
 
+    console.log(fam)
+    
     var modified_fam = [];
     fam.forEach(function(element) {
       if (element.values.length >= 50) {
