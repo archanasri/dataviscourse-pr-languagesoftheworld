@@ -2,9 +2,9 @@ loadData().then(data => {
 
     let that = this;
 
-    const bubbleMap = new bubbleChart(data);
     const worldMap = new Map(data);
-    //const nodeGraph = new Node(data);
+    const barMap = new barChart(data);
+    const bubbleMap = new bubbleChart(data, worldMap, barMap);
 
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);
@@ -16,14 +16,12 @@ loadData().then(data => {
     document.addEventListener("click", function(e) {
         e.stopPropagation();
         if(e.target.tagName !="path"){
-          if(e.target.tagName !="circle"){
-            if(e.target.className != "slider"){
-             //updateCountry(null, null);
-}
+            if(e.target.tagName !="circle"){
+                if(e.target.className != "slider"){
+                //updateCountry(null, null);
+                }
+            }
         }
-
-        }
-
     });
 });
 

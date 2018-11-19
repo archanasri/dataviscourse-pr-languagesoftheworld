@@ -1,23 +1,16 @@
 class bubbleChart {
 
-  constructor(data) {
-    this.data = data
-
-    /*this.margin = {top: 10, right: 20, bottom: 20, left: 50};
-    let bChart = d3.select("#bubble-chart").classed("fullview", true);
-
-    //fetch the svg bounds
-    this.svgBounds = bChart.node().getBoundingClientRect();
-    this.svgWidth = this.svgBounds.width - this.margin.left - this.margin.right;
-    this.svgHeight = 150;
-
-    //add the svg to the div
-    this.svg = bChart.append("svg")
-            .attr("width", this.svgWidth)
-            .attr("height", this.svgHeight);*/
+  constructor(data, wordldMap, barMap) {
+    
+    this.data = data;
+    this.wordldMap = wordldMap;
+    this.barMap = barMap;
+  
   }
 
   createBubble() {
+
+    let that = this;
 
     var fam = d3.nest()
                 .key(function(d) {return d.family})
@@ -25,7 +18,7 @@ class bubbleChart {
 
     var modified_fam = [];
     fam.forEach(function(element) {
-      if (element.values.length >= 20) {
+      if (element.values.length >= 50) {
         modified_fam.push([element.key, element.values.length]);
       }
     });
@@ -46,13 +39,13 @@ class bubbleChart {
     myObject[0] = "children"
     myObject["children"] = newArray;
 
-    console.log(myObject)
+    //console.log(myObject)
 
-    let diameter = 600;
+    let diameter = 550;
     let color = d3.scaleOrdinal(d3.schemeCategory10)
     let bubble = d3.pack(myObject)
                    .size([diameter, diameter])
-                   .padding(1.5);
+                   .padding(0.5);
 
     let svg = d3.select("#bubble-chart")
                 .append("svg")
@@ -78,13 +71,24 @@ class bubbleChart {
                     return "translate(" + d.x + "," + d.y + ")";
                   });
 
+    let languageData = this.data.language;
+
     node.append("circle")
         .attr("r", function(d) {
           return d.r;
         })
         .attr("fill", function(d, i) {
-          //console.log(d)
           return color(d.value);
+        })
+        .on("click", function(d) {
+          let selectedFamily = d.data.key;
+          let familyData = [];
+          familyData.push(languageData.filter(function (v) { return v.family == selectedFamily }));
+          that.wordldMap.update_bubble(familyData[0], color, d.value);
+          d3.csv("data/country_code.csv").then(countryCode => {
+            that.barMap.update(familyData[0], countryCode, color, d.value);
+          })
+          //that.barMap.update(familyData[0]);
         });
 
     node.append("text")
@@ -97,6 +101,6 @@ class bubbleChart {
           return d.r / 5;
         })
         .attr("fill", "white");
-
   }
+  
 }

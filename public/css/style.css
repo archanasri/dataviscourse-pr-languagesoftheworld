@@ -23,3 +23,10 @@
 .No{
   fill:yellow;
 }
+.graticule{
+    fill: none;
+    stroke: #777;
+    stroke-width: .5px;
+    stroke-opacity: .2;
+    pointer-events: none;
+}
