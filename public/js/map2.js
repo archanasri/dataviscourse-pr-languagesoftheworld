@@ -58,6 +58,7 @@ class Map {
       let world_map = d3.select("#map").select("svg")
       let svg = world_map;
       let that = this;
+      svg.selectAll("circle").remove();
       let circles = svg.selectAll("circle")
         .data(node_data.values);
 
@@ -88,7 +89,7 @@ class Map {
             .data(familyData);
 
         circles.exit().remove();
-        
+
         circles = circles.enter().append("circle")
             .attr("r", 3)
             .attr("transform", function (d) {
