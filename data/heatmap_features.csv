@@ -1,0 +1,8 @@
+A81,A81_encoded,A82,A82_encoded,A83,A83_encoded,A87,A87_encoded,A89,A89_encoded
+SOV,1,SV,1,OV,1,Adjective-Noun,1,Numeral-Noun,1
+SVO,2,VS,2,VO,2,Noun-Adjective,2,Noun-Numeral,2
+VSO,3,No dominant order,3,No dominant order,3,No dominant order,3,No dominant order,3
+VOS,4,,,,,Only internally-headed relative clauses,4,Numeral only modifies verb,4
+OVS,5,,,,,,,,
+OSV,6,,,,,,,,
+No dominant order,7,,,,,,,,
