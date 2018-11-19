@@ -69,8 +69,8 @@ class Node{
 
       });
       this.worldMap.update(myArray[0]);
-      console.log(myArray);
-      console.log(systemArray);
+      //console.log(myArray);
+      //console.log(systemArray);
 
       let treeArray = [];
       treeArray.push(
