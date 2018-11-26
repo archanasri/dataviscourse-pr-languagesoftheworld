@@ -1,6 +1,6 @@
 class GenderData {
 
-      constructor(numberOfGenders,language,latitude,longitude,id,system){
+      constructor(numberOfGenders,language,latitude,longitude,id,system,family,genus,macroarea){
 
       this.system = system;
       this.numberOfGenders = numberOfGenders;
@@ -8,6 +8,9 @@ class GenderData {
       this.latitude = latitude;
       this.longitude = longitude;
       this.id =id;
+      this.family = family;
+      this.genus = genus;
+      this.macroarea = macroarea;
       }
 }
 
@@ -21,9 +24,10 @@ class SystemData {
 
 class Node{
 
-    constructor(data,worldMap){
+    constructor(data,worldMap,PieChart){
     this.data = data;
     this.worldMap = worldMap;
+    this.PieChart = PieChart;
     }
 
     drawNodeGraph(){
@@ -56,8 +60,11 @@ class Node{
           let latitude = v["latitude"];
           let longitude = v["longitude"];
           let id =v["wals_code"];
+          let family = v["family"];
+          let genus = v["genus"];
+          let macroarea = v["macroarea"];
 
-          new_temp.push(new GenderData(numberOfGenders,language,latitude,longitude,id,system));
+          new_temp.push(new GenderData(numberOfGenders,language,latitude,longitude,id,system,family,genus,macroarea));
 
         });
         myArray.push({
@@ -112,7 +119,7 @@ class Node{
         d.name = d.parent;
       });
       let treemap = d3.tree()
-                      .size([800, 300]);
+                      .size([800, 600]);
 
       let nodes = d3.hierarchy(root, function(d) {
         return d.children;
@@ -120,11 +127,11 @@ class Node{
 
       nodes = treemap(root);
 
-      let svg = d3.select("#tree").append("svg")
-                  .attr("width", 3100)
-                  .attr("height", 1100);
+      let svg = d3.select("#tree").select("svg")
+                  .attr("width", 950)
+                  .attr("height", 900);
       let g = svg.append("g")
-                 .attr("transform", "translate(" + 250 + "," + 25 + ")");
+                 .attr("transform", "translate(" + 200 + "," + 25 + ")");
 
       let link = g.selectAll(".link")
                 .data(nodes.descendants().slice(1))
@@ -147,13 +154,20 @@ class Node{
                   return "translate(" + d.y + "," + d.x + ")";
                 });
 
-
+    let color = d3.scaleOrdinal(d3.schemeSet1)
     node.append("circle")
         .attr("r", 10)
+        .attr("fill",function(d){
+          let index = d.id.split(" ");
+          //console.log(index[0])
+          return color(index[0]);
+        })
         .on("click",function(d){
         let current_key = d.data.parent;
         let node_value = d.id;
-
+        if(current_key == undefined){
+          that.PieChart.drawPieChart(current_key,myArray,node_value);
+        }
         if(current_key =="Gender Based Systems"){
           console.log(node_value)
           let node_data = []
@@ -172,8 +186,10 @@ class Node{
         node.push({'key':node_value,"values":values})
         console.log(node[0])
         that.worldMap.update(node[0]);
+        that.PieChart.drawPieChart(current_key,myArray,node_value);
         }
-        else{
+        else if (current_key != undefined) {
+
 
         let recordsSorted = []
         recordsSorted.push(myArray.filter(function(o) {
@@ -191,6 +207,7 @@ class Node{
         }
         let node_data = recordsSorted[index];
         that.worldMap.update(node_data);
+        that.PieChart.drawPieChart(current_key,myArray,node_value);
 }
 
 
