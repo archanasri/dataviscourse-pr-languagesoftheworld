@@ -102,7 +102,7 @@ class Node{
 
 
 
-      console.log(treeArray);
+      //console.log(treeArray);
       let root = d3.stratify()
                    .id(function(d){return d.GenderSystem;})
                    .parentId(function(d){ return d.parent;})
@@ -154,6 +154,27 @@ class Node{
         let current_key = d.data.parent;
         let node_value = d.id;
 
+        if(current_key =="Gender Based Systems"){
+          console.log(node_value)
+          let node_data = []
+          node_data.push(myArray.filter(function(o) {
+                  return o.key === node_value;
+              }));
+
+        node_data = node_data[0];
+        var values = []
+        Object.keys(node_data).map(function(key){
+        let d =  node_data[key];
+        d.values.forEach(function(dd){ return values.push(dd)});
+        });
+        console.log(values)
+        let node= []
+        node.push({'key':node_value,"values":values})
+        console.log(node[0])
+        that.worldMap.update(node[0]);
+        }
+        else{
+
         let recordsSorted = []
         recordsSorted.push(myArray.filter(function(o) {
                 return o.key === current_key;
@@ -170,7 +191,7 @@ class Node{
         }
         let node_data = recordsSorted[index];
         that.worldMap.update(node_data);
-
+}
 
 
 
