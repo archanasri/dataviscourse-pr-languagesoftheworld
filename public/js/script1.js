@@ -4,25 +4,11 @@ loadData().then(data => {
 
     const worldMap = new Map(data);
     const barMap = new barChart(data);
-    const HeatMap = new HeatMap_new(data)
-    const DropDown = new drawDropDown(data,HeatMap)
-    const bubbleMap = new bubbleChart(data, worldMap, barMap,HeatMap);
+    const bubbleMap = new bubbleChart(data, worldMap, barMap);
 
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);
         bubbleMap.createBubble(mapData);
-    });
-
-    // This clears a selection by listening for a click
-    document.addEventListener("click", function(e) {
-        e.stopPropagation();
-        if(e.target.tagName !="path"){
-            if(e.target.tagName !="circle"){
-                if(e.target.className != "slider"){
-                //updateCountry(null, null);
-                }
-            }
-        }
     });
 });
 
