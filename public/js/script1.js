@@ -4,7 +4,9 @@ loadData().then(data => {
 
     const worldMap = new Map(data);
     const barMap = new barChart(data);
-    const bubbleMap = new bubbleChart(data, worldMap, barMap);
+    const HeatMap = new HeatMap_new(data)
+    const DropDown = new drawDropDown(data,HeatMap)
+    const bubbleMap = new bubbleChart(data, worldMap, barMap,HeatMap);
 
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);

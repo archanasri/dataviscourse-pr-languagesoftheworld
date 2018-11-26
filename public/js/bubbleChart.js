@@ -1,11 +1,12 @@
 class bubbleChart {
 
-  constructor(data, wordldMap, barMap) {
-    
+  constructor(data, wordldMap, barMap,HeatMap) {
+
     this.data = data;
     this.wordldMap = wordldMap;
     this.barMap = barMap;
-  
+    this.HeatMap = HeatMap
+
   }
 
   createBubble() {
@@ -17,7 +18,7 @@ class bubbleChart {
                 .entries(this.data.language);
 
     console.log(fam)
-    
+
     var modified_fam = [];
     fam.forEach(function(element) {
       if (element.values.length >= 50) {
@@ -85,6 +86,7 @@ class bubbleChart {
         .on("click", function(d) {
           let selectedFamily = d.data.key;
           let familyData = [];
+          that.HeatMap.drawheatmap(selectedFamily);
           familyData.push(languageData.filter(function (v) { return v.family == selectedFamily }));
           that.wordldMap.update_bubble(familyData[0], color, d.value);
           d3.csv("data/country_code.csv").then(countryCode => {
@@ -104,5 +106,5 @@ class bubbleChart {
         })
         .attr("fill", "white");
   }
-  
+
 }

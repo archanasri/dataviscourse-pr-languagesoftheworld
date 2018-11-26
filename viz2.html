@@ -17,6 +17,7 @@
     <script src="public/js/node_graph.js" async></script>
     <script src="public/js/script.js" async></script>
     <script src="public/js/heatmap.js" async></script>
+    <script src="public/js/dropdown.js" async></script>
 </head>
 
 <body>
@@ -27,12 +28,14 @@
         <svg width="1500" height="1200" id="map-chart" class="left_float">
     </div>
 
-    <svg width="800" height="800" ,class="left_float">
+    <div width="800" height="800" ,class="left_float">
         <g id="tree"></g>
-    </svg>
-    <svg width="800" height="800" ,class="left_float">
-        <g id="heatmap"></g>
-    </svg>
+    </div>
+
+    <div width="8000" height="8000" ,class="left_float">
+        <svg id ="dropdown"></svg>
+        <svg id="heatmap"></svg>
+    </div>
 
 
 </body>
