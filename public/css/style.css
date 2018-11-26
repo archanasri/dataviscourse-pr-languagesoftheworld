@@ -3,7 +3,7 @@
     background-color: #4CAF50; /* Green background */
     border: 1px solid green; /* Green border */
     color: white; /* White text */
-    padding: 10px 24px; 
+    padding: 10px 24px;
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
   }
@@ -23,6 +23,19 @@
 .No{
   fill:yellow;
 }
+
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 2;
+    color: rgba(0, 0, 0, 0.8);
+    /* content: "\25BC"; */
+    position: relative;
+    pointer-events: none;
+}
+
 .graticule{
     fill: none;
     stroke: #777;

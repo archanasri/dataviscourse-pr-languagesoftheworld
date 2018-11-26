@@ -13,7 +13,9 @@ class Map {
         this.projection = d3.geoWinkel3().scale(140).translate([365, 225]);
         this.nameArray = data.language.map(d => d.wals_code.toUpperCase());
         this.languageData = data.language;
-    }
+        
+    };
+
 
     /**
      * Renders the map
@@ -54,6 +56,7 @@ class Map {
     }
 
     update(node_data){
+
       //console.log(node_data);
       let world_map = d3.select("#map").select("svg")
       let svg = world_map;
