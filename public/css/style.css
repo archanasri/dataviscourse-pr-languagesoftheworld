@@ -24,6 +24,7 @@
   fill:yellow;
 }
 
+/* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
     box-sizing: border-box;
     display: inline;
@@ -36,6 +37,39 @@
     pointer-events: none;
 }
 
+/* Northward tooltips */
+.d3-tip.n:after {
+    /* content: "\25BC"; */
+    margin: -4px 0 0 0;
+    top: 100%;
+    left: 0;
+    /* text-align: center; */
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+    /* content: "\26A0"; */
+    margin: -4px 0 0 0;
+    top: -800px;
+    left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+    /* content: "\25B2"; */
+    margin: 4px 0 1px 0;
+    top: -8px;
+    left: 1481px;
+    text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+    /* content: "\25B6"; */
+    margin: -4px 0 0 -1px;
+    top: 50%;
+    left: 100%;
+}
 .graticule{
     fill: none;
     stroke: #777;
