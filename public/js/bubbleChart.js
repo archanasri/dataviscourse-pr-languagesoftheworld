@@ -1,11 +1,11 @@
 class bubbleChart {
 
-  constructor(data, wordldMap, barMap,HeatMap) {
+  constructor(data, wordldMap, barMap) {
 
     this.data = data;
     this.wordldMap = wordldMap;
     this.barMap = barMap;
-    this.HeatMap = HeatMap
+
 
   }
 
@@ -86,10 +86,10 @@ class bubbleChart {
         .on("click", function(d) {
           let selectedFamily = d.data.key;
           let familyData = [];
-          that.HeatMap.drawheatmap(selectedFamily);
+
           familyData.push(languageData.filter(function (v) { return v.family == selectedFamily }));
           that.wordldMap.update_bubble(familyData[0], color, d.value);
-          d3.csv("data/country_code.csv").then(countryCode => {
+          d3.csv("dataviscourse-pr-languagesoftheworld/data/country_code.csv").then(countryCode => {
             that.barMap.update(familyData[0], countryCode, color, d.value);
           })
           //that.barMap.update(familyData[0]);

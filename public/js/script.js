@@ -5,34 +5,14 @@ loadData().then(data => {
 
 
     const worldMap = new Map(data);
-    //const HeatMap  = new HeatMap_new(data);
-    const nodeGraph = new Node(data,worldMap);
-    const HeatMap = new HeatMap_new(data)
-    const DropDown = new dropdownBox(data,HeatMap)
+    const PieChart = new piechart(data);
+    const nodeGraph = new Node(data,worldMap,PieChart);
+
 
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);
     nodeGraph.drawNodeGraph(mapData);
-    DropDown.drawDropDown();
 
-    });
-    //d3.csv('data/heatmap_features.csv').then(heatmap_feature=>{
-      //console.log(heatmap_feature);
-      //HeatMap.drawheatmap(heatmap_feature);
-    //})
-
-
-    // This clears a selection by listening for a click
-    document.addEventListener("click", function(e) {
-        e.stopPropagation();
-        if(e.target.tagName !="path"){
-          if(e.target.tagName !="circle"){
-            if(e.target.className != "slider"){
-             //updateCountry(null, null);
-}
-        }
-
-        }
 
     });
 });

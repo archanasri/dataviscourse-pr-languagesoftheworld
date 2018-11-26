@@ -5,7 +5,7 @@ class barChart {
   }
 
   update(familyData, countryCode, color, val) {
-     
+
      let that = this;
 
      let cData = d3.nest()
@@ -14,7 +14,7 @@ class barChart {
 
     let newCountryData = []
 
-    cData.forEach(element => { 
+    cData.forEach(element => {
       let dataKey = element.key;
       let dataValue = element.values;
       let newrow = countryCode.filter(function (e) {
@@ -35,14 +35,14 @@ class barChart {
     let widthScale = d3.scaleLinear()
                        .range([0, 760])
                        .domain([0, newCountryData.length])
-    
+
     let yScale = d3.scaleLinear()
                    .range([0, 700])
                    .domain([0, newCountryData.length])
 
     let svg = d3.select("#bar-chart");
     svg.selectAll("rect").remove();
-    
+
     let rectBar = d3.select("#bar-chart").selectAll("rect").data(newCountryData);
 
     rectBar.exit().remove();
