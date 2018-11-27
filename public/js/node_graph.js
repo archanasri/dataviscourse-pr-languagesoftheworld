@@ -129,8 +129,8 @@ class Node{
       nodes = treemap(root);
 
       let svg = d3.select("#tree").select("svg")
-                  .attr("width", 950)
-                  .attr("height", 900);
+                  //.attr("width", 950)
+                  //s.attr("height", 900);
       let g = svg.append("g")
                  .attr("transform", "translate(" + 200 + "," + 25 + ")");
 

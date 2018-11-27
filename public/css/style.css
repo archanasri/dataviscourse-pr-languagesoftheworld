@@ -18,8 +18,8 @@
 }
 
 #tree{
-  width: 950px;
-  height: 950px;
+  width: 900px;
+  height: 900px;
   float: left;
 }
 
@@ -79,11 +79,12 @@ body {font-family: Arial;}
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+  text-align: center;
 }
 
 .tab button {
   background-color: inherit;
-  float: left;
+  float: center;
   border: none;
   outline: none;
   cursor: pointer;
