@@ -24,16 +24,20 @@
 </head>
 <body>
 
-<h2>Languages of the World</h2>
+<h2 style="text-align: center">Languages of the World</h2>
+<h3 style="text-align: center">Archanasri Subramanian & Krithika Iyer</h3>
+<p style="text-align: center">
+    <a href="Process Book.pdf">Process Book</a>
+    <a href="">Screencast</a>
+</p>
 
 <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'Viz1')">Families of Languages</button>
     <button class="tablinks" onclick="openCity(event, 'Viz2')">Number of Genders & Gender Based Systems</button>
-    <button class="tablinks" onclick="openCity(event, 'project-details')">Project Details</button>
 </div>
 
 <div id="map">
-    <svg width="700" height="480" id="map-chart" style="align: center"></svg>
+    <svg width="700" height="480" id="map-chart"></svg>
 </div>
 
 <div id="Viz1" class="tabcontent">
@@ -51,18 +55,14 @@
 <div id="Viz2" class="tabcontent">
 
   <div id="tree">
-      <svg width="800" height="800"></svg>
+      <svg width="600" height="800" style="float: left"></svg>
   </div>
 
   <div id ="piechart">
-      <svg width="500" height="500"></svg>
+      <svg width="500" height="500" style="float: left"></svg>
 
   </div>
 </div>
-
-<div id="project-details" class="tabcontent">
-</div>
-
 
 <script>
 function openCity(evt, cityName) {
