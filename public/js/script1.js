@@ -7,7 +7,7 @@ loadData().then(data => {
     const bubbleMap = new bubbleChart(data, worldMap, barMap);
 
     d3.json('data/world.json').then(mapData => {
-		worldMap.drawMap(mapData);
+        worldMap.drawMap(mapData);
         bubbleMap.createBubble(mapData);
     });
 });

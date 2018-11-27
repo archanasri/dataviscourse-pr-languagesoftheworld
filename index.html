@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Families of Languages</title>
+  <title>Languages of the World</title>
   <link rel="stylesheet" href="public/css/style.css"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -20,55 +21,47 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
   <script src="public/js/piechart.js" async></script>
 
-
-
-
-
-
-
 </head>
 <body>
 
-<h2>Tabs</h2>
-<p>Click on the buttons inside the tabbed menu:</p>
+<h2>Languages of the World</h2>
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Viz1')">Visualization 1</button>
-  <button class="tablinks" onclick="openCity(event, 'Viz2')">Visualization 2</button>
+    <button class="tablinks" onclick="openCity(event, 'Viz1')">Families of Languages</button>
+    <button class="tablinks" onclick="openCity(event, 'Viz2')">Number of Genders & Gender Based Systems</button>
+    <button class="tablinks" onclick="openCity(event, 'project-details')">Project Details</button>
+</div>
 
-</div>
 <div id="map">
-    <svg width="700" height="480" id="map-chart">
+    <svg width="700" height="480" id="map-chart" style="align: center"></svg>
 </div>
+
 <div id="Viz1" class="tabcontent">
-  <!--<h3>Visualization 1</h3>
-  <div class="header">
-      <h1>Families of Languages</h1>
-  </div>-->
 
   <div class="bubble">
-      <svg width="600" height="500" id="bubble-chart" ></svg>
+      <svg width="600" height="500" id="bubble-chart" style="float:left"></svg>
   </div>
 
   <div class="bar">
       <svg width="760" height="800" id="bar-chart"></svg>
   </div>
+
 </div>
 
 <div id="Viz2" class="tabcontent">
-  <h3>Visualization 2</h3>
-  <div class="header">
-      <h1>Number of Genders and Genders Based Systems</h1>
-  </div>
+
   <div id="tree">
       <svg width="800" height="800"></svg>
   </div>
+
   <div id ="piechart">
       <svg width="500" height="500"></svg>
 
   </div>
 </div>
 
+<div id="project-details" class="tabcontent">
+</div>
 
 
 <script>
