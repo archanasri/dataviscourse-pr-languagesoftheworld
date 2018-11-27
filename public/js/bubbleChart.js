@@ -89,7 +89,7 @@ class bubbleChart {
 
           familyData.push(languageData.filter(function (v) { return v.family == selectedFamily }));
           that.wordldMap.update_bubble(familyData[0], color, d.value);
-          d3.csv("dataviscourse-pr-languagesoftheworld/data/country_code.csv").then(countryCode => {
+          d3.csv("data/country_code.csv").then(countryCode => {
             that.barMap.update(familyData[0], countryCode, color, d.value);
           })
           //that.barMap.update(familyData[0]);
