@@ -10,10 +10,11 @@
   height:800px;
   float: left;
 }
+
 #map{
   width: 710px;
   height: 490px;
-
+  margin: auto;
 }
 
 #tree{
@@ -28,39 +29,28 @@
   float: left;
 }
 
-  .btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px;
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
-  }
-
 .left_float {
-    float:left;
-  }
+  float:left;
+}
 
-  .selected{
-      stroke: #404040;;
-      stroke-width:4;
-      r:25px;
-  }
+.selected{
+  stroke: #404040;;
+  stroke-width:4;
+  r:25px;
+}
 
-
-  .d3-tip {
-      line-height: 2;
-      padding-left: 10px;
-      padding-right: 10px;
-      min-width: 400px;
-      border-style: groove;
-      padding: 12px;
-      background: #FFFFFF;
-      color: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      pointer-events: none;
-  }
-
+.d3-tip {
+  line-height: 2;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-width: 400px;
+  border-style: groove;
+  padding: 12px;
+  background: #FFFFFF;
+  color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  pointer-events: none;
+}
 
 .Non-sex-based{
   fill:blue;
@@ -74,51 +64,45 @@
   fill:yellow;
 }
 
-
 .graticule{
-    fill: none;
-    stroke: #777;
-    stroke-width: .5px;
-    stroke-opacity: .2;
-    pointer-events: none;
+  fill: none;
+  stroke: #777;
+  stroke-width: .5px;
+  stroke-opacity: .2;
+  pointer-events: none;
 }
 
 
 body {font-family: Arial;}
 
-/* Style the tab */
 .tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
 
-/* Style the buttons inside the tab */
 .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
 }
 
-/* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
-/* Create an active/current tablink class */
 .tab button.active {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
-/* Style the tab content */
 .tabcontent {
-    display: none;
-    /*padding: 6px 12px;*/
-    border: 1px solid #ccc;
-    border-top: none;
+  display: none;
+  /*padding: 6px 12px;*/
+  border: 1px solid #ccc;
+  border-top: none;
 }
