@@ -2,15 +2,35 @@ class barChart {
 
   constructor(data) {
     this.data = data;
+
+    this.tip = d3.tip().attr('class', 'd3-tip')
+      //.direction('se')
+      .offset(function () {
+        return [0, 0];
+      })
+  }
+
+  tooltip_render(tooltip_data) {
+    let text = "<h2 class =" + (tooltip_data.name) + " >" + tooltip_data.name + "</h2>";
+    text += "Number of Languages: " + tooltip_data.numLang;
+    return text;
   }
 
   update(familyData, countryCode, color, val) {
 
-     let that = this;
+    let that = this;
 
-     let cData = d3.nest()
-               .key(function(d) {return d.countrycodes;})
-               .entries(familyData);
+    this.tip.html((d) => {
+      let tooltip_data = {
+        "name": d.key,
+        "numLang": d.value.length,
+      };
+      return this.tooltip_render(tooltip_data);
+    });
+
+    let cData = d3.nest()
+                  .key(function(d) {return d.countrycodes;})
+                  .entries(familyData);
 
     let newCountryData = []
 
@@ -22,15 +42,13 @@ class barChart {
       })
 
       if (newrow.length != 0) {
-        newCountryData.push({ key: newrow[0].COUNTRY, value: dataValue })
+        newCountryData.push({key: newrow[0].COUNTRY, value: dataValue})
       }
     });
 
     newCountryData.sort(function (a, b) {
       return b.value.length - a.value.length;
     });
-
-    console.log(newCountryData.length)
 
     let widthScale = d3.scaleLinear()
                        .range([0, 760])
@@ -59,7 +77,11 @@ class barChart {
             return widthScale(d.value.length);
            })
            .attr("height", 20)
-           .attr("fill", color(val));
+           .attr("fill", color(val))
+           .on("mouseover", this.tip.show)
+           .on("mouseout", this.tip.hide);
+
+    d3.select("#bar-chart").call(this.tip);
 
     rectBar.exit().remove();
 

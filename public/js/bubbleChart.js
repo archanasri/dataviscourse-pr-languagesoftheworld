@@ -6,23 +6,41 @@ class bubbleChart {
     this.wordldMap = wordldMap;
     this.barMap = barMap;
 
+    this.tip = d3.tip().attr('class', 'd3-tip')
+      .direction('se')
+      .offset(function () {
+        return [0, 0];
+      })
 
+  }
+
+  tooltip_render(tooltip_data) {
+    let text = "<h2 class =" + (tooltip_data.name) + " >" + tooltip_data.name + "</h2>";
+    text += "Number of Languages: " + tooltip_data.numLang;
+    return text;
   }
 
   createBubble() {
 
     let that = this;
 
+    this.tip.html((d) => {
+      let tooltip_data = {
+        "name": d.data.key,
+        "numLang": d.data.value,
+      };
+
+      return this.tooltip_render(tooltip_data);
+    });
+
     var fam = d3.nest()
                 .key(function(d) {return d.family})
                 .entries(this.data.language);
 
-    console.log(fam)
-
     var modified_fam = [];
     fam.forEach(function(element) {
       if (element.values.length >= 50) {
-        modified_fam.push([element.key, element.values.length]);
+        modified_fam.push([element.key, element.values.length, element.values]);
       }
     });
 
@@ -42,8 +60,6 @@ class bubbleChart {
     myObject[0] = "children"
     myObject["children"] = newArray;
 
-    //console.log(myObject)
-
     let diameter = 550;
     let color = d3.scaleOrdinal(d3.schemeCategory10)
     let bubble = d3.pack(myObject)
@@ -52,10 +68,15 @@ class bubbleChart {
 
     let svg = d3.select("#bubble-chart")
                 .append("svg")
+                .data(fam)
                 .classed("left_float",true)
                 .attr("width", diameter)
                 .attr("height", diameter)
-                .attr("class", "bubble");
+                .attr("class", "bubble")
+                //.on("mouseover", this.tip.show)
+                //.on("mouseout", this.tip.hide);
+    
+    //d3.select("#bubble-chart").select("svg").call(this.tip);
 
     let nodes = d3.hierarchy(myObject)
                   .sum(function(d) {
@@ -72,7 +93,12 @@ class bubbleChart {
                   .attr("class", "node")
                   .attr("transform", function(d) {
                     return "translate(" + d.x + "," + d.y + ")";
-                  });
+                  })
+                  .on("mouseover", this.tip.show)
+                  .on("mouseout", this.tip.hide);
+    
+    //d3.select("node").call(this.tip);
+    d3.select("#bubble-chart").select("svg").call(this.tip);
 
     let languageData = this.data.language;
 
