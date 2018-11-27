@@ -1,4 +1,9 @@
 
+#map{
+  align:center;
+}
+
+
   .btn-group button {
     background-color: #4CAF50; /* Green background */
     border: 1px solid green; /* Green border */
@@ -12,6 +17,27 @@
     float:left;
   }
 
+  .selected{
+      stroke: #404040;;
+      stroke-width:4;
+      r:25px;
+  }
+
+
+  .d3-tip {
+      line-height: 2;
+      padding-left: 10px;
+      padding-right: 10px;
+      min-width: 400px;
+      border-style: groove;
+      padding: 12px;
+      background: #FFFFFF;
+      color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      pointer-events: none;
+  }
+
+
 .Non-sex-based{
   fill:blue;
 }
@@ -24,56 +50,51 @@
   fill:yellow;
 }
 
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 10px;
-    width: 100%;
-    line-height: 2;
-    color: rgba(0, 0, 0, 0.8);
-    /* content: "\25BC"; */
-    position: relative;
-    pointer-events: none;
-}
 
-/* Northward tooltips */
-.d3-tip.n:after {
-    /* content: "\25BC"; */
-    margin: -4px 0 0 0;
-    top: 100%;
-    left: 0;
-    /* text-align: center; */
-}
-
-/* Eastward tooltips */
-.d3-tip.e:after {
-    /* content: "\26A0"; */
-    margin: -4px 0 0 0;
-    top: -800px;
-    left: -8px;
-}
-
-/* Southward tooltips */
-.d3-tip.s:after {
-    /* content: "\25B2"; */
-    margin: 4px 0 1px 0;
-    top: -8px;
-    left: 1481px;
-    text-align: center;
-}
-
-/* Westward tooltips */
-.d3-tip.w:after {
-    /* content: "\25B6"; */
-    margin: -4px 0 0 -1px;
-    top: 50%;
-    left: 100%;
-}
 .graticule{
     fill: none;
     stroke: #777;
     stroke-width: .5px;
     stroke-opacity: .2;
     pointer-events: none;
+}
+
+
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /*border: 1px solid #ccc;
+    border-top: none;*/
 }

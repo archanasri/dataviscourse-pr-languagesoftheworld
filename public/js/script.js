@@ -12,6 +12,7 @@ loadData().then(data => {
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);
     nodeGraph.drawNodeGraph(mapData);
+    PieChart.drawPieChart(undefined,mapData,"Gender Based Systems");
 
 
     });

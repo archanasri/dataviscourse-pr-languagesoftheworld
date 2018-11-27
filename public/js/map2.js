@@ -9,14 +9,14 @@ class Map {
      * country was updated (clicked)
      */
     constructor(data) {
-
-        this.projection = d3.geoWinkel3().scale(140).translate([365, 225]);
+        this.projection = d3.geoPatterson().scale(140).translate([500, 300]);
+        //this.projection = d3.geoWinkel3().scale(140).translate([365, 225]);
         this.nameArray = data.language.map(d => d.wals_code.toUpperCase());
         this.languageData = data.language;
 
         // Intialize tool-tip
         this.tip = d3.tip().attr('class', 'd3-tip')
-            .direction('se')
+            //.direction('se')
             .offset(function() {
                 return [0,0];
             })
@@ -29,7 +29,7 @@ class Map {
         text += "<br>Family: " + tooltip_data.family;
         text += "<br>Genus: " + tooltip_data.genus;
         text += "<br>Macro Area " + tooltip_data.macroarea;
-        text += "</ul>";
+
 
         return text;
     }

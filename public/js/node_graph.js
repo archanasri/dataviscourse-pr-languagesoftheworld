@@ -76,6 +76,7 @@ class Node{
 
       });
       this.worldMap.update(myArray[0]);
+
       //console.log(myArray);
       //console.log(systemArray);
 
@@ -156,6 +157,11 @@ class Node{
 
     let color = d3.scaleOrdinal(d3.schemeSet1)
     node.append("circle")
+        .classed("selected",function(d){
+          if (d.id == "Gender Based Systems"){
+            return true;
+          }
+        })
         .attr("r", 10)
         .attr("fill",function(d){
           let index = d.id.split(" ");
@@ -163,6 +169,8 @@ class Node{
           return color(index[0]);
         })
         .on("click",function(d){
+        svg.selectAll("circle").classed("selected",false);
+        d3.select(this).classed("selected",true);
         let current_key = d.data.parent;
         let node_value = d.id;
         if(current_key == undefined){
@@ -221,7 +229,7 @@ class Node{
             })
         .style("text-anchor", function(d) {
               return d.children ? "end" : "start"; })
-        .text(function(d) { return d.data.GenderSystem; });
+        .text(function(d) { return d.data.GenderSystem.split(" ").splice(1,3); });
 
 
 
