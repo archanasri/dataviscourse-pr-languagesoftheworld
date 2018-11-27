@@ -1,8 +1,32 @@
 
-#map{
-  align:center;
+.bubble{
+  width:610px;
+  height:510px;
+  float: left;
 }
 
+.bar{
+  width:770px;
+  height:800px;
+  float: left;
+}
+#map{
+  width: 710px;
+  height: 490px;
+
+}
+
+#tree{
+  width: 950px;
+  height: 950px;
+  float: left;
+}
+
+#piechart{
+  width: 500px;
+  height: 500px;
+  float: left;
+}
 
   .btn-group button {
     background-color: #4CAF50; /* Green background */
@@ -94,7 +118,7 @@ body {font-family: Arial;}
 /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 12px;
-    /*border: 1px solid #ccc;
-    border-top: none;*/
+    /*padding: 6px 12px;*/
+    border: 1px solid #ccc;
+    border-top: none;
 }
