@@ -120,7 +120,7 @@ class Node{
         d.name = d.parent;
       });
       let treemap = d3.tree()
-                      .size([800, 600]);
+                      .size([500, 500]);
 
       let nodes = d3.hierarchy(root, function(d) {
         return d.children;
@@ -129,10 +129,10 @@ class Node{
       nodes = treemap(root);
 
       let svg = d3.select("#tree").select("svg")
-                  //.attr("width", 950)
-                  //s.attr("height", 900);
+                  .attr("width", 800)
+                  .attr("height", 600);
       let g = svg.append("g")
-                 .attr("transform", "translate(" + 200 + "," + 25 + ")");
+                 .attr("transform", "translate(" + 150 + "," + 25 + ")");
 
       let link = g.selectAll(".link")
                 .data(nodes.descendants().slice(1))

@@ -3,7 +3,7 @@ class piechart{
   constructor(data){
   this.data=data;
   this.tip = d3.tip().attr('class', 'd3-tip')
-      .direction('se')
+      .direction('s')
       .offset(function() {
           return [0,0];
       })
