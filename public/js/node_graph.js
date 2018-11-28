@@ -76,7 +76,7 @@ class Node{
 
       });
       this.worldMap.update(myArray[0]);
-
+      this.PieChart.drawPieChart(undefined,myArray,"Gender Based Systems");
       //console.log(myArray);
       //console.log(systemArray);
 
@@ -132,7 +132,7 @@ class Node{
                   .attr("width", 800)
                   .attr("height", 600);
       let g = svg.append("g")
-                 .attr("transform", "translate(" + 150 + "," + 25 + ")");
+                 .attr("transform", "translate(" + 160 + "," + 25 + ")");
 
       let link = g.selectAll(".link")
                 .data(nodes.descendants().slice(1))
@@ -174,6 +174,7 @@ class Node{
         let current_key = d.data.parent;
         let node_value = d.id;
         if(current_key == undefined){
+          console.log(myArray);
           that.PieChart.drawPieChart(current_key,myArray,node_value);
         }
         if(current_key =="Gender Based Systems"){
@@ -215,12 +216,21 @@ class Node{
         }
         let node_data = recordsSorted[index];
         that.worldMap.update(node_data);
+        console.log(myArray);
         that.PieChart.drawPieChart(current_key,myArray,node_value);
 }
 
 
 
+        })
+        .on("mouseover",function(){
+          d3.select(this).classed("highlighted",true);
+        })
+        .on("mouseout",function(){
+          d3.select(this).classed("highlighted",false)
         });
+
+
     let that = this;
     node.append("text")
         .attr("dy", ".35em")
