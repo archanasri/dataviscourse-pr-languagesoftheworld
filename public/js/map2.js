@@ -117,8 +117,11 @@ class Map {
           //console.log(system[1]);
           return system[1];
         })*/
-        .on("mouseover",this.tip.show)
-        .on("mouseout",this.tip.hide)
+        .on("mouseover",this.tip.show
+        )
+        .on("mouseout",this.tip.hide
+        )
+
         .attr("fill",function(d){
           let ind = d.numberOfGenders;
           ind = ind.split(" ");
@@ -148,5 +151,50 @@ class Map {
                 ]) + ")";
             })
             .attr("fill", color(value));
+    }
+
+    update_fromPie(parent,myArray,id){
+
+      if (id != "Unknown"){
+        if(parent !="Gender Based Systems"){
+        let system_data = [];
+
+        system_data.push(myArray.filter(function(o) {
+                let new_key = o.key.split(" ");
+                new_key = new_key[1];
+
+                return new_key === parent[0];
+            }));
+        let circle_data = [];
+        let index = 0;
+        for(let i=0;i<system_data[0].length;i++){
+
+          if(system_data[0][i].values[0].numberOfGenders.split(" ")[1] == id){
+           index = i;
+          }
+
+        }
+        this.update(system_data[0][index])
+    }
+    else{
+      let system_data = [];
+      let values =[];
+      system_data.push(myArray.filter(function(o) {
+              let new_key = o.key.split(" ");
+              new_key = new_key[1];
+              console.log(new_key,id[0])
+              if(new_key == id[0]){
+                values = values.concat(o.values);
+              }
+              return new_key === id[0];
+          }));
+      let circle_data =[];
+      circle_data.push({"key":id[0],"values":values});
+      this.update(circle_data[0]);
+
+
+
+    }
+  }
     }
 }

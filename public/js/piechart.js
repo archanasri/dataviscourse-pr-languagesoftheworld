@@ -1,7 +1,8 @@
 class piechart{
 
-  constructor(data){
+  constructor(data,worldMap){
   this.data=data;
+  this.worldMap = worldMap;
   this.tip = d3.tip().attr('class', 'd3-tip')
       .direction('s')
       .offset(function() {
@@ -17,10 +18,11 @@ class piechart{
   }
 
   drawPieChart(parent,myArray,id){
-
+    let that = this;
+    console.log(myArray);
 
     this.tip.html((d)=>{
-              console.log(d.system)
+
               let tooltip_data = {
 
               "system":d.data.system,
@@ -35,7 +37,7 @@ class piechart{
 
   if (parent=="Gender Based Systems"){
 
-    console.log(id);
+    //console.log(id);
     let pieData = [];
     let node_data = []
     node_data.push(myArray.filter(function(o) {
@@ -54,7 +56,7 @@ class piechart{
       pieData.push({"numLangues":numberOfLanguages,"system":system});
 
     });
-    console.log(pieData);
+    //console.log(pieData);
 
     let pie = d3.pie()
         .value(d => d.numLangues)
@@ -71,21 +73,32 @@ class piechart{
     var path = svg.datum(pieData).selectAll("path")
                               .data(pie)
                               .enter().append("path")
-                              .attr("fill", function(d, i) { console.log(d)
+
+                              .attr("fill", function(d, i) { //console.log(d)
                                 return color(i); })
                               .attr("d", arc)
                               //.each(function(d) { this._current = d; }) // store the initial angles
                               .attr("transform", "translate(" + 250 + "," + 250 + ")")
                               .on("mouseover",this.tip.show)
-                              .on("mouseout",this.tip.hide);
+                              .on("mouseout",this.tip.hide)
+                              .on("click",function(d){
+                              console.log(myArray);
+                              that.worldMap.update_fromPie(id,myArray,d.data.system)
+                              svg.selectAll("path").classed("selected",false);
+                              d3.select(this).classed("selected",true);});
     d3.select("#piechart").select("svg").call(this.tip);
 
+    id = id.split(" ").splice(1,3);
     let dt = [id];
-    let text = svg.selectAll("text").data(dt);
+    let g = svg.append("g").classed("PieTitleDiv",true);
+
+    let text = g.selectAll("text").data(dt);
     text = text.enter().append("text");
     text.text(function(d){return d})
-    .attr("x",50)
-        .attr("y",50)
+    .attr("x",175)
+    .attr("y",50)
+   .attr("class","piechartTitle")
+
         //.attr("transform", "translate(" + 250 + "," + 250 + ")");;
     text.exit().remove()
 
@@ -109,7 +122,7 @@ class piechart{
       newArr.push({"numLangues":total_languages,"system":system_name});
 
     });
-    console.log(newArr);
+    //console.log(newArr);
     let pie = d3.pie()
         .value(d => d.numLangues)
         .sort(null);
@@ -122,22 +135,32 @@ class piechart{
     let svg = d3.select("#piechart").select("svg");
     svg.selectAll("text").remove();
     svg.selectAll("path").remove();
+    console.log(myArray);
     var path = svg.datum(newArr).selectAll("path")
                               .data(pie)
                               .enter().append("path")
+
                               .attr("fill", function(d, i) { return color(i); })
                               .attr("d", arc)
                               //.each(function(d) { this._current = d; }) // store the initial angles
                               .attr("transform", "translate(" + 250 + "," + 250 + ")")
                               .on("mouseover",this.tip.show)
-                              .on("mouseout",this.tip.hide);
+                              .on("mouseout",this.tip.hide)
+                              .on("click",function(d){
+                              console.log(myArray);
+                              that.worldMap.update_fromPie(id,myArray,d.data.system)
+                              svg.selectAll("path").classed("selected",false);
+                              d3.select(this).classed("selected",true);});
     d3.select("#piechart").select("svg").call(this.tip);
     let dt = ["Gender Based Systems"];
-    let text = svg.selectAll("text").data(dt);
+    let g = svg.append("g").classed("PieTitleDiv",true);
+
+    let text = g.selectAll("text").data(dt);
     text = text.enter().append("text");
     text.text(function(d){return d})
-    .attr("x",50)
-        .attr("y",50)
+    .attr("x",165)
+    .attr("y",50)
+    .attr("class","piechartTitle")
         //.attr("transform", "translate(" + 250 + "," + 250 + ")");;
     text.exit().remove()
 

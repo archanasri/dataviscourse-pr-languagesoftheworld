@@ -5,14 +5,14 @@ loadData().then(data => {
 
 
     const worldMap = new Map(data);
-    const PieChart = new piechart(data);
+    const PieChart = new piechart(data,worldMap);
     const nodeGraph = new Node(data,worldMap,PieChart);
 
 
     d3.json('data/world.json').then(mapData => {
 		worldMap.drawMap(mapData);
     nodeGraph.drawNodeGraph(mapData);
-    PieChart.drawPieChart(undefined,mapData,"Gender Based Systems");
+    
 
 
     });
