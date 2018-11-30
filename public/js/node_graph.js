@@ -165,7 +165,7 @@ class Node {
 
         let color1 = d3.scaleOrdinal(d3.schemeSet1)
         //let color2 = d3.scaleOrdinal(d3.schemeOranges[4])
-        let color2 = ['black','#00BFFF','#ADFF2F','#DC143C','#C71585']
+        let color2 = ['black','#00BFFF','#ADFF2F','#DC143C','#FFFF66','#C71585'];
         node.append("circle")
             .classed("selected", function(d) {
                 if (d.id == "Gender Based Systems") {

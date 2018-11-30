@@ -85,7 +85,7 @@ class Map {
 
       //console.log(node_data);
       //let color = d3.scaleOrdinal(d3.schemeDark2)
-      let color = ['black','#00BFFF','#ADFF2F','#DC143C','#C71585']
+      let color = ['black','#00BFFF','#ADFF2F','#DC143C','#FFFF66','#C71585']
       let world_map = d3.select("#map").select("svg")
       let svg = world_map;
       let that = this;

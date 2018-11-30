@@ -12,7 +12,7 @@ class piechart{
   }
 
   tooltip_render(tooltip_data) {
-      let text = "<h2 class ="  + (tooltip_data.system) + " >" + tooltip_data.system + "</h2>";
+      let text = "<h2 class ="  + (tooltip_data.system) + " >" + tooltip_data.system.toString().replace(/,/g,' ') + "</h2>";
       text +=  "Number of Languages Language: " + tooltip_data.language;
       return text;
   }
@@ -69,7 +69,7 @@ class piechart{
         .innerRadius(0)
         .outerRadius(radius);
     //let color = d3.scaleOrdinal(d3.schemeDark2)
-    let color =  ['black','#00BFFF','#ADFF2F','#DC143C','#C71585']
+    let color =  ['black','#00BFFF','#ADFF2F','#DC143C','#FFFF66','#C71585']
     let svg = d3.select("#piechart").select("svg");
     svg.selectAll("text").remove();
     svg.selectAll("path").remove();
@@ -77,11 +77,10 @@ class piechart{
                               .data(pie)
                               .enter().append("path")
                               .attr("fill", function(d, i) { console.log(d)
-                                return color[d.index]; })
+                                return color[parseInt(d.data.index)]; })
                               .attr("d", arc)
                               //.each(function(d) { this._current = d; }) // store the initial angles
                               .attr("transform", "translate(" + 250 + "," + 250 + ")");
-                              //.transition().delay(1000).duration(2000);
 
     path.on("mouseover",this.tip.show)
         .on("mouseout",this.tip.hide)
