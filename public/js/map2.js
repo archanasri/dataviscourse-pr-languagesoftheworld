@@ -1,15 +1,8 @@
 /** Class representing the map view. */
 class Map {
 
-    /**
-     * Creates a Map Object
-     *
-     * @param data the full dataset
-     * @param updateCountry a callback function used to notify other parts of the program when the selected
-     * country was updated (clicked)
-     */
-    constructor(data) {
-        this.projection = d3.geoPatterson().scale(100).translate([350, 250]);
+        constructor(data) {
+        this.projection = d3.geoPatterson().scale(135).translate([500, 245]);
         //this.projection = d3.geoWinkel3().scale(140).translate([365, 225]);
         this.nameArray = data.language.map(d => d.wals_code.toUpperCase());
         this.languageData = data.language;
@@ -28,7 +21,7 @@ class Map {
         text += "<br>Number of Genders: " + tooltip_data.numberOfGenders;
         text += "<br>Family: " + tooltip_data.family;
         text += "<br>Genus: " + tooltip_data.genus;
-        text += "<br>Macro Area " + tooltip_data.macroarea;
+        text += "<br>Macro Area: " + tooltip_data.macroarea;
 
 
         return text;
@@ -54,15 +47,15 @@ class Map {
            .append("path")
            .attr("fill","white")
            .attr("stroke","black")
-           .attr("d",p);
+           .attr("d",p)
+           .attr("class","countries");
 
         let graticule = d3.geoGraticule();
-       	svg.append("path")
+       	/*svg.append("path")
        	   .datum(graticule)
            .attr("d", p)
-           .attr("class", "graticule")
-           //.attr("stroke","red")
-           //.attr("fill","blue");
+           .attr("class", "graticule")*/
+
 
        	svg.append("path")
             .datum(graticule.outline)
@@ -73,7 +66,7 @@ class Map {
 
     update(node_data){
 
-      //console.log(c_id);
+
       this.tip.html((d)=>{
 
                 let n = d.numberOfGenders.split(" ")
@@ -87,14 +80,13 @@ class Map {
                "macroarea":d.macroarea
 
              };
-              /* pass this as an argument to the tooltip_render function then,
-               * return the HTML content returned from that method.
-               * */
+
           return this.tooltip_render(tooltip_data);
               });
 
       //console.log(node_data);
-      let color = d3.scaleOrdinal(d3.schemeSet1)
+      //let color = d3.scaleOrdinal(d3.schemeDark2)
+      let color = ['black','#00BFFF','#ADFF2F','#DC143C','#C71585']
       let world_map = d3.select("#map").select("svg")
       let svg = world_map;
       let that = this;
@@ -111,12 +103,13 @@ class Map {
             d.latitude
             ]) + ")";
           })
-        /*.attr("class",function(d){
-          let system = d.system;
+        .attr("fill",function(d){
+          console.log(d)
+          let system = d.numberOfGenders;
           system = system.split(" ");
-          //console.log(system[1]);
-          return system[1];
-        })*/
+          console.log(system[0]);
+          return color[parseInt(system[0])];
+        })
         .on("mouseover",this.tip.show
         )
         .on("mouseout",this.tip.hide
@@ -125,13 +118,13 @@ class Map {
         .attr("fill",function(d){
           let ind = d.numberOfGenders;
           ind = ind.split(" ");
-          return color(parseInt(ind[0]));
+          return color[parseInt(ind[0])];
         });
         d3.select("#map").select("svg").call(this.tip);
     }
 
     update_bubble(familyData, color, value) {
-        //console.log(familyData);
+
         let world_map = d3.select("#map").select("svg")
         let svg = world_map;
         let that = this;

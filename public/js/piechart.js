@@ -37,7 +37,7 @@ class piechart{
 
   if (parent=="Gender Based Systems"){
 
-    //console.log(id);
+
     let pieData = [];
     let node_data = []
     node_data.push(myArray.filter(function(o) {
@@ -45,18 +45,20 @@ class piechart{
         }));
 
     node_data = node_data[0];
-    //console.log(node_data)
+
 
     node_data.forEach(function(d){
 
       let numberOfLanguages = d.values.length;
 
       let system = d.values[0].numberOfGenders.split(" ").splice(1,3);
+      let index = d.values[0].numberOfGenders.split(" ")[0]
+      console.log(index);
 
-      pieData.push({"numLangues":numberOfLanguages,"system":system});
+      pieData.push({"numLangues":numberOfLanguages,"system":system,"index":index});
 
     });
-    //console.log(pieData);
+
 
     let pie = d3.pie()
         .value(d => d.numLangues)
@@ -66,26 +68,28 @@ class piechart{
     let arc = d3.arc()
         .innerRadius(0)
         .outerRadius(radius);
-    let color = d3.scaleOrdinal(d3.schemeSet1)
+    //let color = d3.scaleOrdinal(d3.schemeDark2)
+    let color =  ['black','#00BFFF','#ADFF2F','#DC143C','#C71585']
     let svg = d3.select("#piechart").select("svg");
     svg.selectAll("text").remove();
     svg.selectAll("path").remove();
-    var path = svg.datum(pieData).selectAll("path")
+    let path = svg.datum(pieData).selectAll("path")
                               .data(pie)
                               .enter().append("path")
-
-                              .attr("fill", function(d, i) { //console.log(d)
-                                return color(i); })
+                              .attr("fill", function(d, i) { console.log(d)
+                                return color[d.index]; })
                               .attr("d", arc)
                               //.each(function(d) { this._current = d; }) // store the initial angles
-                              .attr("transform", "translate(" + 250 + "," + 250 + ")")
-                              .on("mouseover",this.tip.show)
-                              .on("mouseout",this.tip.hide)
-                              .on("click",function(d){
-                              console.log(myArray);
-                              that.worldMap.update_fromPie(id,myArray,d.data.system)
-                              svg.selectAll("path").classed("selected",false);
-                              d3.select(this).classed("selected",true);});
+                              .attr("transform", "translate(" + 250 + "," + 250 + ")");
+                              //.transition().delay(1000).duration(2000);
+
+    path.on("mouseover",this.tip.show)
+        .on("mouseout",this.tip.hide)
+        .on("click",function(d){
+          that.worldMap.update_fromPie(id,myArray,d.data.system)
+          svg.selectAll("path").classed("selected",false);
+          d3.select(this).classed("selected",true);});
+
     d3.select("#piechart").select("svg").call(this.tip);
 
     id = id.split(" ").splice(1,3);
@@ -98,9 +102,7 @@ class piechart{
     .attr("x",175)
     .attr("y",50)
    .attr("class","piechartTitle")
-
-        //.attr("transform", "translate(" + 250 + "," + 250 + ")");;
-    text.exit().remove()
+    text.exit().remove();
 
   }
   if(parent == undefined){
@@ -143,8 +145,9 @@ class piechart{
                               .attr("fill", function(d, i) { return color(i); })
                               .attr("d", arc)
                               //.each(function(d) { this._current = d; }) // store the initial angles
-                              .attr("transform", "translate(" + 250 + "," + 250 + ")")
-                              .on("mouseover",this.tip.show)
+                              .attr("transform", "translate(" + 250 + "," + 250 + ")");
+                              //.transition().delay(1000).duration(2000);
+                        path.on("mouseover",this.tip.show)
                               .on("mouseout",this.tip.hide)
                               .on("click",function(d){
                               console.log(myArray);
@@ -161,8 +164,8 @@ class piechart{
     .attr("x",165)
     .attr("y",50)
     .attr("class","piechartTitle")
-        //.attr("transform", "translate(" + 250 + "," + 250 + ")");;
     text.exit().remove()
+
 
 
 

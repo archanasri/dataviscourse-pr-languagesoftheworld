@@ -17,8 +17,8 @@
 }
 
 #map{
-  width: 710px;
-  height: 490px;
+  width: fit-content;
+  height: fit-content;
   margin: auto;
 }
 
@@ -40,14 +40,20 @@
 
 .selected{
   stroke: #404040;;
-  stroke-width:4;
-  r:25px;
+  stroke-width:2.5;
+  r:12;
 }
 
 .highlighted{
     stroke: #404040;;
-    stroke-width:4;
+    stroke-width:2.5;
 }
+
+.countries {
+    stroke: #f7f7f7;
+    fill: #d9d9d9;
+}
+
 .d3-tip {
     line-height: 2;
     padding-left: 10px;
@@ -140,6 +146,9 @@ body {font-family: Arial;}
   border: 1px solid #ccc;
   background-color: #f1f1f1;
   text-align: center;
+  position: sticky;
+  top:0px;
+  z-index: 999;
 }
 
 .tab button {
@@ -163,7 +172,8 @@ body {font-family: Arial;}
 
 .tabcontent {
   display: none;
+  height: 600px;
   /*padding: 6px 12px;*/
-  border: 1px solid #ccc;
-  border-top: none;
+  /* border: 1px solid #ccc; */
+  /* border-top: none; */
 }
