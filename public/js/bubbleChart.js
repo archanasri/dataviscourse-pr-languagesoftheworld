@@ -20,6 +20,10 @@ class bubbleChart {
     return text;
   }
 
+  createTransition() {
+    d3.select("#bubble-chart").select("svg").select("g").selectAll("circle").transition().delay(300).duration(1000);
+  }
+
   createBubble() {
 
     let that = this;
@@ -84,6 +88,8 @@ class bubbleChart {
                   })
 
     let node = svg.selectAll(".node")
+                  //.transition()
+                  //.delay(300).duration(1000)
                   .data(bubble(nodes).descendants())
                   .enter()
                   .filter(function(d) {
@@ -103,6 +109,8 @@ class bubbleChart {
     let languageData = this.data.language;
 
     node.append("circle")
+        //.transition()
+        //.delay(300).duration(1000)
         .attr("r", function(d) {
           return d.r;
         })
@@ -110,6 +118,8 @@ class bubbleChart {
           return color(d.value);
         })
         .on("click", function(d) {
+          //that.createTransition();
+          //createTransition()
           let selectedFamily = d.data.key;
           let familyData = [];
 
@@ -119,7 +129,8 @@ class bubbleChart {
             that.barMap.update(familyData[0], countryCode, color, d.value);
           })
           //that.barMap.update(familyData[0]);
-        });
+        })
+        //.transition();
 
     node.append("text")
         .attr("dy", ".2em")
@@ -131,6 +142,8 @@ class bubbleChart {
           return d.r / 5;
         })
         .attr("fill", "white");
+
+    //d3.select("#bubble-chart").select("svg").select("g").selectAll("circle").transition().delay(300).duration(1000);
   }
 
 }
