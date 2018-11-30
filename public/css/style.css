@@ -1,26 +1,22 @@
 .piechartTitle{
   font-size: 20px;
   width: 100%;
-
   color: black;
+  font-family: georgia,garamond,serif;
 }
 
 #title {
-  font: 60px/0.2 'Cookie', Helvetica, sans-serif;
-  /*font: 'Cookie', Helvetica, sans-serif;*/
-  color: rgb(89, 49, 143);
-  /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
+  font-family: georgia,garamond,serif;
+  color: rgb(0, 0, 0);
 }
 
 #sub-title {
-  font: 30px/0.2 'Cookie', Helvetica, sans-serif;
-  /*font: 'Cookie', Helvetica, sans-serif;*/
-  color: rgb(89, 49, 143);
-  /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
+  font-family: georgia,garamond,serif;
+  color: rgb(0, 0, 0);
 }
 
 #vis-header {
-  font: 30px/0.1 'Cookie', Helvetica, sans-serif;
+  font-family: georgia,garamond,serif;
   color: rgb(0, 0, 0);
   text-align: center;
 }
@@ -72,6 +68,17 @@
   r:12;
 }
 
+.selected_bubble{
+  stroke: #404040;;
+  stroke-width:5.0;
+}
+
+.selected_rect{
+  stroke: #404040;;
+  stroke-width:5.0;
+  opacity: 0.8;
+}
+
 .highlighted{
     stroke: #404040;;
     stroke-width:2.5;
@@ -96,7 +103,7 @@
 }
 .tooltip-title{
     font-size:18px;
-    font-family: "Arial Black";
+    font-family: georgia,garamond,serif;
 }
 
 /* Creates a small triangle extender for the tooltip */
@@ -180,6 +187,10 @@ html {
   z-index: 999;
 }
 
+.tablinks {
+  font-family: georgia,garamond,serif;
+}
+
 .tab button {
   background-color: inherit;
   float: center;
@@ -205,4 +216,18 @@ html {
   /*padding: 6px 12px;*/
   /* border: 1px solid #ccc; */
   /* border-top: none; */
+}
+
+.bubble_text {
+  font-family: georgia,garamond,serif;
+  fill: white;
+}
+
+.rectbar {
+  stroke: black;
+  stroke-width: 2.0;
+}
+
+.mytext {
+  font-family: georgia,garamond,serif;
 }

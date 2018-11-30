@@ -10,9 +10,11 @@ class barChart {
       })
   }
 
-  tooltip_render(tooltip_data) {
-    let text = "<h2 class =" + (tooltip_data.name) + " >" + tooltip_data.name + "</h2>";
-    text += "Number of Languages: " + tooltip_data.numLang;
+  tooltip_render(tooltip_data, c) {
+    let text = '<h3 style='+'"'+ 'color:' + c +';"'+ 'class =' + (tooltip_data.name) + ' >' + tooltip_data.name + "</h3>";
+    text += "<li> Number of Languages: " + tooltip_data.numLang + "</li>";
+    text += "<li> Genus: " + tooltip_data.genus + "</li>";
+    text += "<li> Macroarea: " + tooltip_data.macroarea + "</li>";
     return text;
   }
 
@@ -46,11 +48,15 @@ class barChart {
     let that = this;
 
     this.tip.html((d) => {
+      console.log(d)
       let tooltip_data = {
         "name": d.key,
         "numLang": d.value.length,
+        "genus": d.value[0].genus,
+        "macroarea": d.value[0].macroarea
       };
-      return this.tooltip_render(tooltip_data);
+      let c = color(val)
+      return this.tooltip_render(tooltip_data, c);
     });
 
     let cData = d3.nest()
@@ -59,8 +65,8 @@ class barChart {
 
     let newCountryData = []
 
-    console.log(cData)
-    console.log(countryCode)
+    //console.log(cData)
+    //console.log(countryCode)
 
     cData.forEach(element => {
       let dataKey = element.key;
@@ -78,7 +84,7 @@ class barChart {
       return b.value.length - a.value.length;
     });
 
-    console.log(newCountryData)
+    //console.log(newCountryData)
 
     let widthScale = d3.scaleLinear()
                        .range([0, 500])
@@ -95,19 +101,27 @@ class barChart {
     let svg = d3.select("#bar-chart");
     svg.selectAll("rect").remove();
 
-    let rectBar = d3.select("#bar-chart").selectAll("rect").data(newCountryData);
+    let text = d3.select(".bar")
+    text = text.select("#barText").selectAll("text").data([1]);
+    text = text.enter().append("text");
+    text.text("Number of languages spoken in countries")
+      .attr("x", 165)
+      .attr("y", 50)
+      .attr("class", "piechartTitle")
+    text.exit().remove()
 
+    let rectBar = d3.select("#bar-chart").selectAll("rect").data(newCountryData);
     rectBar.exit().remove();
 
-    rectBar.enter()
+    rectBar = rectBar.enter()
            .append("rect")
            //.transition()
            //.delay(300)
            //.duration(1000)
-           .attr("x", 100)
+           .attr("x", 50)
            .attr("y", function(d, i) {
             //return yScale(i);
-            return (i*50+20)
+            return (i*40+20)
             //return (i * 20 + 40)
            })
            .attr("width", function(d) {
@@ -115,10 +129,20 @@ class barChart {
            })
            .attr("height", 20)
            .attr("fill", color(val))
-           .attr("stroke", "black")
-           .on("mouseover", this.tip.show)
-           .on("mouseout", this.tip.hide);
+           //.attr("stroke", "black")
+           //.attr("stroke-width", 2.0)
+           .classed("rectbar", true);
+
+    rectBar.transition().delay(1000).duration(1000);
     
+    rectBar.on("mouseover", this.tip.show)
+              //function (d) {
+              //d3.select("#bar-chart").selectAll("rect").classed("selected_rect", false);
+              //d3.select(this).classed("selected_rect", true);
+              //that.tip.show;
+              //})
+           .on("mouseout", this.tip.hide)
+     
     //svg.append("g")
       //.attr("transform", "translate(0," + 450 + ")")
       //.call(d3.axisBottom(widthScale));
@@ -151,8 +175,9 @@ class barChart {
             .attr("x", 0)
             .attr("y", function(d, i) {
               //return yScale(i);
-              return yScale(i);
-            });
+              return (i * 40 + 35)
+            })
+            .classed("mytext", true);
             //.call(this.wrap, 30);
 
     rectText.exit().remove();

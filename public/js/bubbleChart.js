@@ -25,10 +25,12 @@ class bubbleChart {
   }
 
   createBubble() {
-
+    let world_map = d3.select("#map").select("svg");
+    world_map.selectAll("circle").remove();
     let that = this;
 
     this.tip.html((d) => {
+      console.log(d)
       let tooltip_data = {
         "name": d.data.key,
         "numLang": d.data.value,
@@ -52,6 +54,8 @@ class bubbleChart {
       return b[1] - a[1];
     });
 
+    console.log(modified_fam)
+
     var newArray = [];
     modified_fam.forEach(function(element) {
       newArray.push({
@@ -70,7 +74,7 @@ class bubbleChart {
     let bubble = d3.pack(myObject)
                    .size([diameter, diameter])
                    .padding(0.5);
-
+   
     let svg = d3.select("#bubble-chart")
                 .append("svg")
                 .data(fam)
@@ -121,6 +125,8 @@ class bubbleChart {
         .on("click", function(d) {
           //that.createTransition();
           //createTransition()
+          d3.select("#bubble-chart").select("svg").selectAll("circle").classed("selected_bubble", false)
+          d3.select(this).classed("selected_bubble", true);
           let selectedFamily = d.data.key;
           let familyData = [];
 
@@ -142,7 +148,8 @@ class bubbleChart {
         .attr("font-size", function (d) {
           return d.r / 5;
         })
-        .attr("fill", "white");
+        //.attr("fill", "white")
+        .classed("bubble_text", true);
 
     //d3.select("#bubble-chart").select("svg").select("g").selectAll("circle").transition().delay(300).duration(1000);
 

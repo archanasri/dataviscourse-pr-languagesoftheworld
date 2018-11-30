@@ -268,7 +268,8 @@ class Node {
                 } else {
                     return d.data.GenderSystem;
                 }
-            });
+            })
+            .classed("mytext",true);
 
 
 

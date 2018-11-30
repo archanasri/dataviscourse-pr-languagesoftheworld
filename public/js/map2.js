@@ -16,7 +16,7 @@ class Map {
     };
 
     tooltip_render(tooltip_data) {
-        let text = "<h2 class ="  + (tooltip_data.system) + " >" + tooltip_data.system + "</h2>";
+        let text = "<h2 class =tooltip-title >" + tooltip_data.system + "</h2>";
         text +=  "Language: " + tooltip_data.language;
         text += "<br>Number of Genders: " + tooltip_data.numberOfGenders;
         text += "<br>Family: " + tooltip_data.family;
@@ -38,6 +38,7 @@ class Map {
 
         let p = d3.geoPath().projection(this.projection);
         let world_map = d3.select("#map").select("svg")
+      
         let svg = world_map;
         //.append("svg");
         let world_map_paths = svg.selectAll("path")
