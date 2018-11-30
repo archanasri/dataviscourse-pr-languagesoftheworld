@@ -84,7 +84,7 @@ class barChart {
       return b.value.length - a.value.length;
     });
 
-    //console.log(newCountryData)
+    console.log(newCountryData)
 
     let widthScale = d3.scaleLinear()
                        .range([0, 500])
@@ -101,14 +101,14 @@ class barChart {
     let svg = d3.select("#bar-chart");
     svg.selectAll("rect").remove();
 
-    let text = d3.select(".bar")
+    /*let text = d3.select(".bar")
     text = text.select("#barText").selectAll("text").data([1]);
     text = text.enter().append("text");
     text.text("NUMBER OF LANGUAGES SPOKEN IN COUNTRIES")
       .attr("x", 165)
-      .attr("y", 50)
+      .attr("y", 100)
       .attr("class", "piechartTitle")
-    text.exit().remove()
+    text.exit().remove()*/
 
     let rectBar = d3.select("#bar-chart").selectAll("rect").data(newCountryData);
     rectBar.exit().remove();
@@ -121,7 +121,7 @@ class barChart {
            .attr("x", 50)
            .attr("y", function(d, i) {
             //return yScale(i);
-            return (i*40+20)
+            return (i*40+100)
             //return (i * 20 + 40)
            })
            .attr("width", function(d) {
@@ -175,7 +175,7 @@ class barChart {
             .attr("x", 0)
             .attr("y", function(d, i) {
               //return yScale(i);
-              return (i * 40 + 35)
+              return (i * 40 + 115)
             })
             .classed("mytext", true);
             //.call(this.wrap, 30);
