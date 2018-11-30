@@ -104,7 +104,7 @@ class barChart {
     let text = d3.select(".bar")
     text = text.select("#barText").selectAll("text").data([1]);
     text = text.enter().append("text");
-    text.text("Number of languages spoken in countries")
+    text.text("NUMBER OF LANGUAGES SPOKEN IN COUNTRIES")
       .attr("x", 165)
       .attr("y", 50)
       .attr("class", "piechartTitle")
