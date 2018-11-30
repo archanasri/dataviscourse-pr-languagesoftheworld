@@ -66,6 +66,7 @@ class bubbleChart {
 
     let diameter = 550;
     let color = d3.scaleOrdinal(d3.schemeCategory10)
+    //let color = d3.scaleOrdinal(d3.PuRd)
     let bubble = d3.pack(myObject)
                    .size([diameter, diameter])
                    .padding(0.5);
@@ -144,6 +145,7 @@ class bubbleChart {
         .attr("fill", "white");
 
     //d3.select("#bubble-chart").select("svg").select("g").selectAll("circle").transition().delay(300).duration(1000);
+
   }
 
 }

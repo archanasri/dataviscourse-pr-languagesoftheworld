@@ -16,16 +16,16 @@ class barChart {
     return text;
   }
 
-  /*wrap(text, width) {
+  wrap(text, width) {
   text.each(function () {
     var text = d3.select(this),
       words = text.text().split(/\s+/).reverse(),
       word,
       line = [],
       lineNumber = 0,
-      lineHeight = 1.1, 
+      lineHeight = 3.0, 
       y = text.attr("y"),
-      dy = 0,
+      dy = 0.1,
       //dy = parseFloat(text.attr("dy")),
       tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
     while (word = words.pop()) {
@@ -39,7 +39,7 @@ class barChart {
       }
     }
   })
-}*/
+}
 
   update(familyData, countryCode, color, val) {
 
@@ -59,6 +59,9 @@ class barChart {
 
     let newCountryData = []
 
+    console.log(cData)
+    console.log(countryCode)
+
     cData.forEach(element => {
       let dataKey = element.key;
       let dataValue = element.values;
@@ -67,7 +70,7 @@ class barChart {
       })
 
       if (newrow.length != 0) {
-        newCountryData.push({key: newrow[0].COUNTRY, value: dataValue})
+        newCountryData.push({'key': newrow[0].COUNTRY, 'value': dataValue, 'code': element.key})
       }
     });
 
@@ -75,13 +78,19 @@ class barChart {
       return b.value.length - a.value.length;
     });
 
+    console.log(newCountryData)
+
     let widthScale = d3.scaleLinear()
                        .range([0, 500])
                        .domain([0, newCountryData[0].value.length])
 
     let yScale = d3.scaleLinear()
-                   .range([50, 50 + newCountryData.length * 20 + 20])
+                   .range([50, 50 + newCountryData.length * 20 + 50])
                    .domain([0, newCountryData.length])
+    
+    let textScale = d3.scaleLinear()
+                      .range([0, 50 + newCountryData.length * 20 + 20])
+                      .domain([0, newCountryData.length])
 
     let svg = d3.select("#bar-chart");
     svg.selectAll("rect").remove();
@@ -98,18 +107,16 @@ class barChart {
            .attr("x", 100)
            .attr("y", function(d, i) {
             //return yScale(i);
-            //return (i*50+20)
-            return (i * 20 + 40)
+            return (i*50+20)
+            //return (i * 20 + 40)
            })
            .attr("width", function(d) {
-            console.log(d.value.length)
             return widthScale(d.value.length);
            })
            .attr("height", 20)
            .attr("fill", color(val))
-           .attr("stroke", "black");
-
-    rectBar.on("mouseover", this.tip.show)
+           .attr("stroke", "black")
+           .on("mouseover", this.tip.show)
            .on("mouseout", this.tip.hide);
     
     //svg.append("g")
@@ -128,16 +135,22 @@ class barChart {
     svg1.selectAll("text").remove();
 
     let rectText = d3.select("#bar-chart").selectAll("text").data(newCountryData);
+    /*let rectText = d3.select("#rect-text")
+    .attr("width", 100)
+    .attr("height", 800)
+
+    rectText = rectText.selectAll("text").data(newCountryData);*/
 
     rectText.exit().remove();
 
     rectText.enter()
             .append("text")
             .text(function(d) {
-              return d.key;
+              return d.code;
             })
             .attr("x", 0)
             .attr("y", function(d, i) {
+              //return yScale(i);
               return yScale(i);
             });
             //.call(this.wrap, 30);

@@ -26,12 +26,14 @@
 </head>
 <body>
 
-<h2 style="text-align: center">Languages of the World</h2>
-<h3 style="text-align: center">Archanasri Subramanian & Krithika Iyer</h3>
-<p style="text-align: center">
-    <a href="Process Book.pdf">Process Book</a>
-    <a href="">Screencast</a>
-</p>
+<div id="background">
+    <h2 id="title" style="text-align: center">Languages of the World</h2>
+    <h3 id="sub-title" style="text-align: center">Archanasri Subramanian & Krithika Iyer</h3>
+    <p id="sub-title" style="text-align: center">
+        <a href="Process Book.pdf">Process Book</a>
+        <a href="">Screencast</a>
+    </p>
+</div>
 
 <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'Viz1')">Families of Languages</button>
@@ -45,10 +47,12 @@
 <div id="Viz1" class="tabcontent">
 
   <div class="bubble">
+      <p id="vis-header">Popular familes of languages</p>
       <svg width="600" height="500" id="bubble-chart" style="float:left"></svg>
   </div>
 
   <div class="bar">
+      <!--->div id="rect-text"></div-->
       <svg width="760" height="800" id="bar-chart"></svg>
   </div>
 

@@ -4,12 +4,34 @@
 
   color: black;
 }
-body {
-  font: 400 50px/0.8 'Cookie', Helvetica, sans-serif;
+
+#title {
+  font: 60px/0.2 'Cookie', Helvetica, sans-serif;
   /*font: 'Cookie', Helvetica, sans-serif;*/
-  color: #fff;
+  color: rgb(89, 49, 143);
   /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
 }
+
+#sub-title {
+  font: 30px/0.2 'Cookie', Helvetica, sans-serif;
+  /*font: 'Cookie', Helvetica, sans-serif;*/
+  color: rgb(89, 49, 143);
+  /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
+}
+
+#vis-header {
+  font: 30px/0.1 'Cookie', Helvetica, sans-serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+#background {
+  background-image: url("/data/header_image.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.5;
+}
+
 .bubble{
   width:610px;
   height:510px;
@@ -144,7 +166,9 @@ body {
   pointer-events: none;
 }
 
-/*body {font-family: Arial;}*/
+html {
+  margin: 0px;
+}
 
 .tab {
   overflow: hidden;
