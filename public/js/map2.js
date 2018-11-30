@@ -9,7 +9,7 @@ class Map {
 
         // Intialize tool-tip
         this.tip = d3.tip().attr('class', 'd3-tip')
-            //.direction('se')
+            .direction('s')
             .offset(function() {
                 return [0,0];
             })
@@ -22,7 +22,6 @@ class Map {
         text += "<br>Family: " + tooltip_data.family;
         text += "<br>Genus: " + tooltip_data.genus;
         text += "<br>Macro Area: " + tooltip_data.macroarea;
-
 
         return text;
     }
@@ -124,7 +123,6 @@ class Map {
     }
 
     update_bubble(familyData, color, value) {
-
         let world_map = d3.select("#map").select("svg")
         let svg = world_map;
         let that = this;
